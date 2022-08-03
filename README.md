@@ -76,6 +76,6 @@ $
 
 ## Authors
   
-* [Bryan Somtochukwu](github.com/bryansomto)
-* [BRIDGET IZBA](Www.GitHub.com/misschiiff) 
+* [Bryan Somtochukwu](https://github.com/bryansomto)
+* [BRIDGET IZBA](https://github.com/misschiiff) 
 
