@@ -4,32 +4,46 @@ Module base
 """
 import json
 import uuid
-import datetime
+from datetime import datetime
+import models
 # import csv
 # import turtle
 # import random
 
 
 class BaseModel:
-    """Base Model
-
-    Represents a base class.
-
-    Private Class Attributes:
-        __nb_objects (int): Number of instantiated Bases.
     """
+    Contains Class BaseModel
 
-    __nb_objects = 0
+        Private Class Attributes:
+                __time (str): time format.
+    """
+    global __time
+    __time = "%Y-%m-%dT%H:%M:%S.%f"
 
-    def __init__(self, id=None):
+    def __init__(self, *args, **kwargs):
         """Initialize a new base method.
 
         Args:
-            id (str): The unique id of the new BaseModel.
+            *args (ints): New attribute values.
+            **kwargs (dict): New key/value pairs of attributes.
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    setattr(self, key, value)
+            if hasattr(self, "created_at") and type(self.created_at) is str:
+                self.created_at = datetime.strptime(
+                    kwargs["created_at"], __time).isoformat()
+            if hasattr(self, "updated_at") and type(self.updated_at) is str:
+                self.updated_at = datetime.strptime(
+                    kwargs["updated_at"], __time).isoformat()
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+            # models.storage.new(self)
+            # models.storage.save()
 
     def __str__(self):
         return ('[{}] ({}) {}'.format(
@@ -38,13 +52,17 @@ class BaseModel:
     def save(self):
         """ Updates the public instance attribute 'updated_at'. """
         self.updated_at = datetime.datetime.now()
+        # models.storage.save()
 
     def to_dict(self):
         """ Returns a dictionary with all keys/values of __dict__ of the instance. """
-        self.__dict__['__class__'] = __class__.__name__
-        self.__dict__['created_at'] = str(self.created_at.isoformat())
-        self.__dict__['updated_at'] = str(self.updated_at.isoformat())
-        return (self.__dict__)
+        new_dict = self.__dict__.copy()
+        if "created_at" in new_dict:
+            new_dict["created_at"] = new_dict["created_at"].strftime(__time)
+        if "updated_at" in new_dict:
+            new_dict["updated_at"] = new_dict["updated_at"].strftime(__time)
+        new_dict["__class__"] = self.__class__.__name__
+        return new_dict
 
     @staticmethod
     def to_json_string(list_dictionaries):
