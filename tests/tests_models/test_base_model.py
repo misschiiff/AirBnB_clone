@@ -16,6 +16,7 @@ class TestBase_instantiation(unittest.TestCase):
         my_model.my_number = 89
         print(my_model.id)
         print(my_model)
+        my_model.save()
         print(type(my_model.created_at))
         print("--")
         my_model_json = my_model.to_dict()

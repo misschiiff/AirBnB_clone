@@ -15,8 +15,8 @@ class BaseModel:
     """
     Contains Class BaseModel
 
-        Private Class Attributes:
-                __time (str): time format.
+    Private Class Attributes:
+        __time (str): time format.
     """
     global __time
     __time = "%Y-%m-%dT%H:%M:%S.%f"
@@ -51,7 +51,7 @@ class BaseModel:
 
     def save(self):
         """ Updates the public instance attribute 'updated_at'. """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
         # models.save()
 
     def to_dict(self):
