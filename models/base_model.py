@@ -46,8 +46,9 @@ class BaseModel:
             # models.save()
 
     def __str__(self):
-        return ('[{}] ({}) {}'.format(
-            __class__.__name__, self.id, self.__dict__))
+        """ String representation """
+        return ('[{:s}] ({:s}) {}'.format(
+            self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
         """ Updates the public instance attribute 'updated_at'. """
