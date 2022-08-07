@@ -18,8 +18,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_quit(self, arg):
-        """Exit Hbnb shell"""
-        print('Thank you for using Hbnb shell')
+        """Quit command to exit the program\n"""
         self.close()
         return True
 
