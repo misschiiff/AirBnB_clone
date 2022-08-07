@@ -7,7 +7,7 @@ import sys
 # from turtle import *
 
 
-class HbnbShell(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     intro = 'Welcome to the hbnb shell.   Type help or ? to list commands.\n'
     prompt = '(hbnb) '
     file = None
@@ -32,4 +32,4 @@ class HbnbShell(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    HbnbShell().cmdloop()
+    HBNBCommand().cmdloop()
