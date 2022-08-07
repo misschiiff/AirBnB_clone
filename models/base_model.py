@@ -8,12 +8,7 @@ from datetime import datetime
 class BaseModel:
     """
     Represents the BaseModel of the HBnB project.
-
-    Private Class Attributes:
-            __time (str): time format.
     """
-    global __time
-    __time = "%Y-%m-%dT%H:%M:%S.%f"
 
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel.
@@ -22,6 +17,7 @@ class BaseModel:
             *args (any): Unused.
             **kwargs (dict): Key/value pairs of attributes.
         """
+        __time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
