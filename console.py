@@ -75,14 +75,17 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, arg):
-        """Quit command to exit the program."""
-        self.close()
+        """Quit command to exit the program\n"""
         return True
 
     def do_EOF(self, arg):
-        """EOF signal to exit the program."""
-        self.close()
+        """EOF signal to exit the program\n"""
         return True
+
+    def close(self):
+        if self.file:
+            self.file.close()
+            self.file = None
 
     def do_create(self, arg):
         """Usage: create <class>
