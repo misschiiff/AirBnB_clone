@@ -75,17 +75,13 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, arg):
-        """Quit command to exit the program\n"""
+        """Quit command to exit the program."""
         return True
 
     def do_EOF(self, arg):
-        """EOF signal to exit the program\n"""
+        """EOF signal to exit the program."""
+        print("")
         return True
-
-    def close(self):
-        if self.file:
-            self.file.close()
-            self.file = None
 
     def do_create(self, arg):
         """Usage: create <class>
@@ -210,5 +206,5 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
